@@ -5,11 +5,10 @@
 | data | 元データ |
 | X | 元データ(特徴量) |
 | Y | 元データ(目的変数) |
-| X_test | テストデータ(目的変数は含まない) |
 | X_train, Y_train | 訓練データ, Xをtrain_test_split()で分割 |
 | X_valid, Y_valid | 検証データ, Yをtrain_test_split()で分割 |
 | Y_pred | 予測値 |
-
+| X_test | テストデータ(目的変数は含まない) |
 ```
 import pandas as pd
 
