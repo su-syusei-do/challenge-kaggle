@@ -8,7 +8,7 @@
 | X_train, Y_train | 訓練データ, Xをtrain_test_split()で分割 |
 | X_valid, Y_valid | 検証データ, Yをtrain_test_split()で分割 |
 | Y_pred | 予測値 |
-| X_test | テストデータ(目的変数は含まない) |
+| X_test, Y_test | 提出用データ |
 ```
 import pandas as pd
 
@@ -37,9 +37,9 @@ mae = mean_absolute_error(Y_valid, Y_pred)
 # test.csvには目的変数が含まれない
 # このデータに対して予測を立てるという想定
 X_test = pd.read_csv('test.csv')
-Y_pred = model.predict(X_test)
+Y_test = model.predict(X_test)
 
 # 提出用ファイルの作成
-submission = pd.DataFrame({'Id': X_test['Id'], 'target': Y_pred})
+submission = pd.DataFrame({'Id': X_test['Id'], 'target': Y_test})
 submission.to_csv('submission.csv', index=False)
 ```
