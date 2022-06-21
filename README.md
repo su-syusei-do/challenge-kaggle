@@ -59,3 +59,17 @@ submission['target'] = list(map(bool, Y_test))
 
 submission.to_csv('submission.csv', index=False)
 ```
+
+## model
+
+```
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error
+
+def score_dataset(X_train, X_valid, y_train, y_valid):
+    # model作成、トレーニング、予測、評価
+    model = RandomForestRegressor(n_estimators=100, random_state=0)
+    model.fit(X_train, y_train)
+    preds = model.predict(X_valid)
+    return mean_absolute_error(y_valid, preds)
+```
