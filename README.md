@@ -46,6 +46,7 @@ submission = pd.DataFrame({'Id': X_test['Id'], 'target': Y_test})
 submission.to_csv('submission.csv', index=False)
 ```
 
+## 予測値の出力方法
 
 ```
 Y_test = model.predict(X_test)
