@@ -19,7 +19,7 @@ data = pd.read_csv('train.csv')
 
 # 目的変数(target)と、特徴量に分ける
 X = data.drop(['target'], axis=1)
-Y = data.target
+Y = data['target']
 
 # 検証用に分割する場合
 from sklearn.model_selection import train_test_split
