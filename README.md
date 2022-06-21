@@ -17,7 +17,7 @@ import pandas as pd
 # train.csvデータ全量
 data = pd.read_csv('train.csv')
 
-# 目的変数(target)と、それ以外に分ける
+# 目的変数(target)と、特徴量に分ける
 X = data.drop(['target'], axis=1)
 Y = data.target
 
