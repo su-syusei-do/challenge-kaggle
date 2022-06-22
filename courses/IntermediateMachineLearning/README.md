@@ -19,3 +19,18 @@ cols = ['col1', 'col2', 'col3']
 # axis=1で列方向を指定
 X_train.drop(cols, axis=1)
 ```
+
+## 欠損値の補完
+
+```
+from sklearn.impute import SimpleImputer
+
+# strategy='mean' 平均値で補完する
+imp_mean = SimpleImputer(missing_values=np.nan, strategy='mean')
+imp_mean.fit(X_train)
+imputed_X_train = pd.DataFrame(imp_mean.transform(X_train))
+imputed_X_valid = pd.DataFrame(imp_mean.transform(X_valid))
+
+imputed_X_train.columns = X_train.columns
+imputed_X_valid.columns = X_valid.columns
+```
