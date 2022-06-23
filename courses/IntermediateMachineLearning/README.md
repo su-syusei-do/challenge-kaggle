@@ -53,3 +53,16 @@ imputed_X_valid = pd.DataFrame(imp_mean.transform(X_valid))
 imputed_X_train.columns = X_train.columns
 imputed_X_valid.columns = X_valid.columns
 ```
+
+## カテゴリ変数の処理
+
+```
+from sklearn.preprocessing import OrdinalEncoder
+
+s = (X_train.dtypes == 'object')
+object_cols = list(s[s].index)
+
+ordinal_encoder = OrdinalEncoder()
+ordinal_encoder.fit(X_train[object_cols])
+label_X_train[object_cols] = ordinal_encoder.transform(X_train[object_cols])
+```
