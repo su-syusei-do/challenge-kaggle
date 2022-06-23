@@ -17,7 +17,7 @@ print(missing_val_count_by_col[missing_val_count_by_col > 0])
 cols_with_missing = [col for col in X_train.columns if X_train[col].isnull().any()]
 ```
 
-## データの種類が少ないカラムを見つける
+## データの種類が少ないカラム(カテゴリ変数)を見つける
 
 ```
 # nunique()が１０未満で、型がobject
