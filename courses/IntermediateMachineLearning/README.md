@@ -11,6 +11,25 @@ print(missing_val_count_by_col)
 print(missing_val_count_by_col[missing_val_count_by_col > 0])
 ```
 
+## 欠損値を見つける２
+
+```
+cols_with_missing = [col for col in X_train.columns if X_train[col].isnull().any()]
+```
+
+## データの種類が少ないカラムを見つける
+
+```
+# nunique()が１０未満で、型がobject
+low_cardinality_cols = [col for col in X_train.columns if X_train[col].nunique() < 10 and X_train[col].dtype == 'object']
+```
+
+## 数値型のカラムを見つける
+
+```
+numerical_cols = [col for col in X_train.columns if X_train[col].dtype in ['int64', 'float64']]
+```
+
 ## 欠損値を含むカラムの削除
 
 ```
