@@ -66,3 +66,11 @@ ordinal_encoder = OrdinalEncoder()
 ordinal_encoder.fit(X_train[object_cols])
 label_X_train[object_cols] = ordinal_encoder.transform(X_train[object_cols])
 ```
+
+```
+from sklearn.preprocessing import OneHotEncoder
+
+cat_X_train = X_train.select_dtypes(include=['object']) 
+onehot_encoder = OneHotEncoder()
+onehot_encoder.fit(cat_X_train)
+```
