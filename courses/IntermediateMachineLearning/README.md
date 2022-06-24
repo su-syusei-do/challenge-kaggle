@@ -99,3 +99,31 @@ OH_X_train = pd.concat([num_X_train, OH_cols_train], axis=1)
 
 多重度が大きい変数をOneHotEncodingすると、データセットのサイズが膨大になってしまう。<br>
 この様なカラムはdrop()するか、OrdinalEncoder()を適用する。
+
+# Pipelineを使う
+
+Pipelineは複数の処理をまとめて記述できコードが簡潔になる
+
+```
+from sklean.compose import ColumnTransformer
+from sklean.pipeline import Pipeline
+from sklean.impute import SimpleImputer
+from sklean.preprocessing import OneHotEncoder
+
+# 数値型の前処理は欠損値の補完
+num_transformer = SimpleImputer(strategy='median')
+
+# カテゴリ型に対する前処理は、欠損値の補完とOneHotエンコーディング
+cat_transformer = Pipeline(steps=[
+  ('imputer', SimpleImputer(strategy='most_frequent')),
+  ('onehot', OneHotEncoder(handle_unknown='ignore'))
+])
+
+# 数値型、カテゴリ型のカラムに対する前処理を定義する
+preprocessor = ColumnTransformer(
+  transformers=[
+    ('num', num_transformer, num_cols),
+    ('cat', cat_transformer, cat_cols)
+  ]
+)
+```
