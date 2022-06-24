@@ -60,6 +60,10 @@ imputed_X_valid.columns = X_valid.columns
 from sklearn.preprocessing import OrdinalEncoder
 
 s = (X_train.dtypes == 'object')
+# sは、全カラムの比較結果(True/False)を含むSeries
+# print(s[s])はTrueのカラムのみ出力
+# print(s[s].index)はTrueのカラム名を出力
+# Seriesからリストに変換 list(s[s].index)
 object_cols = list(s[s].index)
 
 ordinal_encoder = OrdinalEncoder()
