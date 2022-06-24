@@ -133,6 +133,7 @@ from sklearn.ensumble import RandomForestRegressor
 
 model = RandomForestRegressor(n_estimators=100, random_state=0)
 
+# 前処理のあと、モデルを実行する
 myPipeline = Pipeline(steps=[
   ('preprocessor', preprocessor),
   ('model', model)
