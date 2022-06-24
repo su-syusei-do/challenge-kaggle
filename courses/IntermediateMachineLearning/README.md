@@ -127,3 +127,19 @@ preprocessor = ColumnTransformer(
   ]
 )
 ```
+
+```
+from sklearn.ensumble import RandomForestRegressor
+
+model = RandomForestRegressor(n_estimators=100, random_state=0)
+
+myPipeline = Pipeline(steps=[
+  ('preprocessor', preprocessor),
+  ('model', model)
+])
+
+myPipeline.fit(X_train, Y_train)
+Y_pred = myPipeline.predict(X_valid)
+
+score = mean_absolute_error(Y_valid, Y_pred)
+```
