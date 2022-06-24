@@ -84,7 +84,7 @@ onehot_encoder = OneHotEncoder(handle_unknown='ignore', sparse=False)
 onehot_encoder.fit(cat_X_train)
 
 # 多重度10未満のカラムのみOneHotEncodingする。OneHotEncodingするとカラム名は新しく作られる。
-ndarrayからDataFrameを作成
+# ndarrayからDataFrameを作成
 OH_cols_train = pd.DataFrame(onehot_encoder.transform(X_train[cat_cols]))
 
 # indexをコピー
