@@ -78,3 +78,6 @@ cat_X_train = X_train.select_dtypes(include=['object'])
 onehot_encoder = OneHotEncoder()
 onehot_encoder.fit(cat_X_train)
 ```
+
+多重度が大きい変数をOneHotEncodingすると、データセットのサイズが膨大になってしまう。<br>
+この様なカラムはdrop()するか、OrdinalEncoder()を適用する。
