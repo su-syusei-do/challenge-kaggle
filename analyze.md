@@ -29,6 +29,7 @@ numerical_df = test_df.select_types("number")
 numerical_df.corr()["SalePrice"].sort_values().plot.barh(figsize=(10,15))
 ```
 
+カテゴリ変数の場合、boxプロットで分布を確認する
 ```
 height=11
 width=4
