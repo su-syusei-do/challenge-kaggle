@@ -15,8 +15,26 @@ X_train, X_valid, Y_train, Y_valid = train_test_split(X, Y, train_size=0.8, test
 ## Cross-Validation
 
 ```
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
 from sklearn.model_selection import cross_val_score
 
-scores = -1 * cross_val_score(my_pipeline, X, y, cv=5, scoring='neg_mean_absolute_error')
-print("Average MAE score:", scores.mean())
+def get_score(n_estimators):
+  my_pipeline = Pipeline(steps=[
+    ('preprocessor', SimpleImputer()),
+    ('model', RandomForestRegressor(n_estimators=n_estimators, random_state=0))
+  ])
+  scores = -1 * cross_val_score(my_pipeline, X, y, cv=5, scoring='neg_mean_absolute_error')
+  return scores.mean()
+
+results = { idx*50: get_score(idx*50) for idx in range(1, 9)}
+print(results)
+```
+```
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+plt.plot(list(results.keys()), list(results.values()))
+plt.show()
 ```
