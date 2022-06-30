@@ -73,3 +73,17 @@ def score_dataset(X_train, X_valid, y_train, y_valid):
     preds = model.predict(X_valid)
     return mean_absolute_error(y_valid, preds)
 ```
+
+## 訓練したmodelの保存、読込
+
+```
+import pickle
+
+filename = "model.mdl"
+
+# モデルの保存
+pickle.dump(model, open(filename, 'wb'))
+
+# モデルの読込
+l_model = pickle.load(open(filename, 'rb'))
+```
