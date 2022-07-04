@@ -54,7 +54,7 @@ Y_test = model.predict(X_test)
 # 提出用のCSV
 submission = pd.read_csv('sample_submission.csv')
 
-# 予測結果を設定する. map(bool, pred) は予測値'True','False'をbool型に変換します
+# 予測結果を設定する. map(bool, pred) は予測値をbool型に変換します
 submission['target'] = list(map(bool, Y_test))
 
 submission.to_csv('submission.csv', index=False)
