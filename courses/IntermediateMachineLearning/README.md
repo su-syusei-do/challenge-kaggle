@@ -35,7 +35,7 @@ numerical_cols = [col for col in X_train.columns if X_train[col].dtype in ['int6
 ```
 cols = ['col1', 'col2', 'col3']
 
-# axis=1で列方向を指定
+# axis=1で列を指定
 X_train.drop(cols, axis=1)
 ```
 
