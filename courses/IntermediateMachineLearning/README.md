@@ -100,6 +100,13 @@ OH_X_train = pd.concat([num_X_train, OH_cols_train], axis=1)
 多重度が大きい変数をOneHotEncodingすると、データセットのサイズが膨大になってしまう。<br>
 この様なカラムはdrop()するか、OrdinalEncoder()を適用する。
 
+```
+# pandasでカテゴリ変数をダミー変数に変換する
+# データ型dtypeが'object'か'category'である列がダミー変数に変換される。数値やbool型の列は変換されない
+X_train = pd.get_dummies(X_train)
+X_valid = pd.get_dummies(X_valid)
+```
+
 # Pipelineを使う
 
 Pipelineは複数の処理をまとめて記述できコードが簡潔になる
