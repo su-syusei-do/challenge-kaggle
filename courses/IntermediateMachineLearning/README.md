@@ -56,6 +56,8 @@ imputed_X_valid.columns = X_valid.columns
 
 ## カテゴリ変数の処理
 
+### ordinal encoder
+
 ```
 from sklearn.preprocessing import OrdinalEncoder
 
@@ -70,6 +72,8 @@ ordinal_encoder = OrdinalEncoder()
 ordinal_encoder.fit(X_train[object_cols])
 label_X_train[object_cols] = ordinal_encoder.transform(X_train[object_cols])
 ```
+
+### one hot encoder
 
 ```
 from sklearn.preprocessing import OneHotEncoder
@@ -100,11 +104,40 @@ OH_X_train = pd.concat([num_X_train, OH_cols_train], axis=1)
 多重度が大きい変数をOneHotEncodingすると、データセットのサイズが膨大になってしまう。<br>
 この様なカラムはdrop()するか、OrdinalEncoder()を適用する。
 
+### pandas
+
 ```
 # pandasでカテゴリ変数をダミー変数に変換する
 # データ型dtypeが'object'か'category'である列がダミー変数に変換される。数値やbool型の列は変換されない
 X_train = pd.get_dummies(X_train)
 X_valid = pd.get_dummies(X_valid)
+X_test = pd.get_dummies(X_test)
+X_train, X_valid = X_train.align(X_valid, join='left', axis=1, fill_value=0)
+X_train, X_test = X_train.align(X_test, join='left', axis=1, fill_value=0)
+```
+
+上記ではX_train, X_valid, X_testが同じダミー変数に変換されることを前提としている。
+もし、X_valid, X_testにしか存在しないカテゴリがあると、X_train.align(.., join='left', ..)の際に切り捨てられる。
+
+```
+train = pd.DataFrame([1, 2, 3], columns=['A'])
+test = pd.DataFrame([7,8], columns=['A'])
+train = pd.get_dummies(train, columns=['A'])
+test = pd.get_dummies(test, columns=['A'])
+
+train, test = train.align(test, join='left', axis=1, fill_value=0)
+print(train)
+print(test)
+
+# testにはtrainにないカテゴリ変数(7, 8)が存在するが、alignによって失われる
+
+   A_1  A_2  A_3
+0    1    0    0
+1    0    1    0
+2    0    0    1
+   A_1  A_2  A_3
+0    0    0    0
+1    0    0    0
 ```
 
 # Pipelineを使う
