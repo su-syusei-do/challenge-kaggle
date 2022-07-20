@@ -34,7 +34,7 @@ mi_scores = make_mi_scores(X, y, discrete_features)
 mi_scores[::3] # 3つおきに確認する
 ```
 
-## 描画
+## 可視化
 
 ```
 def plot_mi_scores(scores):
