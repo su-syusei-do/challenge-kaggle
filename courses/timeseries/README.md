@@ -16,6 +16,10 @@ df = pd.read_csv(
 timeダミー
 時系列に+1した値
 
+```
+df['Time'] = np.arange(len(df.index))
+```
+
 |Date|Hardcover|Time|
 |--|--|--|
 |2000-04-01|139|0|
