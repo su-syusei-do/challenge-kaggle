@@ -3,5 +3,9 @@
 ## 結合
 
 ```
-pd.merge(df_a, df_b, on='colA')
+# df_aと、df_bを、colAで結合する
+data = pd.merge(df_a, df_b, on='colA')
+
+# 結合に使用するカラムを指定
+data = pd.merge(df_a, df_b, on=['colA', 'colB'])
 ```
