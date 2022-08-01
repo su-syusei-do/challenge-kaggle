@@ -1,0 +1,7 @@
+# Preprocess
+
+## 結合
+
+```
+pd.merge(df_a, df_b, on='colA')
+```
