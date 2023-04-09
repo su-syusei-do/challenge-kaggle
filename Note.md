@@ -69,7 +69,9 @@ if args.mode == 'train':
 
 ## logger
 
-loggerの初期化方法
+loggerの初期化方法<br>
+stream_handler : sys.stderr (stream指定しない場合)
+file_handler : 指定したファイルへの出力
 
 ~~~
 def create_logger(dir_path):
