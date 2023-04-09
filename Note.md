@@ -71,7 +71,7 @@ if args.mode == 'train':
 
 loggerの初期化方法
 
-~~
+~~~
 def create_logger(dir_path):
     logger = logging.getLogger(__name__)
     logger.handlers = []
